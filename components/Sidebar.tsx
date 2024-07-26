@@ -1,3 +1,4 @@
+// Sidebar for all pages
 'use client';
 import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'

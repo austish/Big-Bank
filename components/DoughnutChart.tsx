@@ -1,3 +1,4 @@
+// Donut chart on home page next to total balance
 'use client';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js"
 import { Doughnut } from 'react-chartjs-2';

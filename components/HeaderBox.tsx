@@ -1,3 +1,4 @@
+// Welcome section on home page
 import React from 'react'
 
 const HeaderBox = ({type="title", title, subtext, user }: HeaderBoxProps) => {

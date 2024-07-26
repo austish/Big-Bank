@@ -2,6 +2,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -192,4 +193,28 @@ export const getTransactionStatus = (date: Date) => {
   twoDaysAgo.setDate(today.getDate() - 2);
 
   return date > twoDaysAgo ? "Processing" : "Success";
+};
+
+// was getting error:
+// Type 'ZodString | (() => ZodOptional<ZodString>)' is not assignable to type 'ZodTypeAny'.
+// Type '() => ZodOptional<ZodString>' is not assignable to type 'ZodType<any, any, any>'.ts(2322)
+// types.d.ts(13, 5): The expected type comes from this index signature.
+// fix: had to evaluate schema outside of z.object call
+export const authFormSchema = (type: string) => {
+  const conditionalString = (condition: boolean, minLength?: number, maxLength?: number) =>
+    condition ? z.string().optional() : z.string().min(minLength || 1).max(maxLength || Infinity);
+
+  return z.object({
+    // sign up
+    firstName: conditionalString(type === 'sign-in', 3),
+    lastName: conditionalString(type === 'sign-in', 3),
+    address1: conditionalString(type === 'sign-in', undefined, 50),
+    state: conditionalString(type === 'sign-in', 2, 2),
+    postalCode: conditionalString(type === 'sign-in', 3, 6),
+    dateOfBirth: conditionalString(type === 'sign-in', 3),
+    ssn: conditionalString(type === 'sign-in', 3),
+    // both
+    email: z.string().email(),
+    password: z.string().min(8),
+  });
 };

@@ -1,4 +1,6 @@
+// Replaces sidebar with hideable nav bar on mobile devices
 'use client';
+// Sheet component from shadcn/ui
 import {
   Sheet,
   SheetClose,

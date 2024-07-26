@@ -1,3 +1,4 @@
+// Balance box on home page
 import AnimatedCounter from './AnimatedCounter'
 import DoughnutChart from './DoughnutChart'
 

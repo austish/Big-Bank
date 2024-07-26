@@ -1,3 +1,4 @@
+// Right side bar with user and card information
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

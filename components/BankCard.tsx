@@ -1,3 +1,4 @@
+// Bank cards used in right side bar
 import { formatAmount } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
