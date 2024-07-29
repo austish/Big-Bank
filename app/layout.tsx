@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Big Bank",
   description: "Big",
   icons: {
-    icon: '/icon/logo.svg'
+    icon: '/icons/logo.svg'
   }
 };
 

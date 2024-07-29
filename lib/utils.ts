@@ -209,6 +209,7 @@ export const authFormSchema = (type: string) => {
     firstName: conditionalString(type === 'sign-in', 3),
     lastName: conditionalString(type === 'sign-in', 3),
     address1: conditionalString(type === 'sign-in', undefined, 50),
+    city: conditionalString(type === 'sign-in', undefined, 50),
     state: conditionalString(type === 'sign-in', 2, 2),
     postalCode: conditionalString(type === 'sign-in', 3, 6),
     dateOfBirth: conditionalString(type === 'sign-in', 3),

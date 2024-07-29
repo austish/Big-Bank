@@ -360,7 +360,7 @@
   }
 
   .footer_image-mobile {
-    @apply relative size-5;
+    @apply relative size-5 right-4;
   }
 
   /* Sidebar */

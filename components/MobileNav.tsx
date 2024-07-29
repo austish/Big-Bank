@@ -15,13 +15,14 @@ import { cn } from "@/lib/utils";
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Footer from "./Footer";
 
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="w-full max-w-[264xp]">
+    <section className="w-full max-w-[264px]">
       <Sheet>
         <SheetTrigger>
           <Image
@@ -32,7 +33,8 @@ const MobileNav = ({ user }: MobileNavProps) => {
             className="cursor-pointer"
           />
         </SheetTrigger>
-        <SheetContent side="right" className="border-none bg-white">
+        <SheetContent side="right" className="w-[275px] border-none bg-white">
+          {/* logo */}
           <Link href="/" className="cursor-pointer items-center flex gap-1 px-4">
             <Image
               src="/icons/logo.svg"
@@ -46,13 +48,13 @@ const MobileNav = ({ user }: MobileNavProps) => {
             <SheetClose asChild>
               <nav className="flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((item) => {
+                // get active page
                 const isActive = pathname === item.route || pathname.startsWith('${item.route}/');
 
                 return (
                   <SheetClose asChild key={item.route}>
                     <Link href={item.route} key={item.label} 
-                      className={cn('mobilenav-sheet_close w-full', { 'bg-bank-gradient': isActive })}
-                    >
+                      className={cn('mobilenav-sheet_close w-full', { 'bg-bank-gradient': isActive })}>
                       <Image
                         src={item.imgURL}
                         alt={item.label}
@@ -75,9 +77,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
 
               </nav>
             </SheetClose>
-
-            FOOTER
-            
+            <Footer user={user} type='mobile'/>
           </div>
         </SheetContent>
       </Sheet>
