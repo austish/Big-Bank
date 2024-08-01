@@ -2,6 +2,7 @@
 
 1. address validation
 2. incorrect password/email message
+3. "Austin Qucah uses Plaid to connect your account"
 
 ## Getting Started
 
