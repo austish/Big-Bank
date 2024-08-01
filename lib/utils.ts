@@ -195,25 +195,26 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
-// was getting error:
-// Type 'ZodString | (() => ZodOptional<ZodString>)' is not assignable to type 'ZodTypeAny'.
-// Type '() => ZodOptional<ZodString>' is not assignable to type 'ZodType<any, any, any>'.ts(2322)
-// types.d.ts(13, 5): The expected type comes from this index signature.
-// fix: had to evaluate schema outside of z.object call
 export const authFormSchema = (type: string) => {
+  // was getting error:
+  // Type 'ZodString | (() => ZodOptional<ZodString>)' is not assignable to type 'ZodTypeAny'.
+  // Type '() => ZodOptional<ZodString>' is not assignable to type 'ZodType<any, any, any>'.ts(2322)
+  // types.d.ts(13, 5): The expected type comes from this index signature.
+  // fix: had to evaluate schema outside of z.object call
   const conditionalString = (condition: boolean, minLength?: number, maxLength?: number) =>
     condition ? z.string().optional() : z.string().min(minLength || 1).max(maxLength || Infinity);
 
   return z.object({
     // sign up
+    // these params are optional in the auth form, because they are not required during sign in
     firstName: conditionalString(type === 'sign-in', 3),
     lastName: conditionalString(type === 'sign-in', 3),
-    address1: conditionalString(type === 'sign-in', undefined, 50),
-    city: conditionalString(type === 'sign-in', undefined, 50),
+    address1: conditionalString(type === 'sign-in', 1, 50),
+    city: conditionalString(type === 'sign-in', 1, 50),
     state: conditionalString(type === 'sign-in', 2, 2),
-    postalCode: conditionalString(type === 'sign-in', 3, 6),
+    postalCode: conditionalString(type === 'sign-in', 5, 5),
     dateOfBirth: conditionalString(type === 'sign-in', 3),
-    ssn: conditionalString(type === 'sign-in', 3),
+    ssn: conditionalString(type === 'sign-in', 4),
     // both
     email: z.string().email(),
     password: z.string().min(8),
