@@ -2,7 +2,8 @@
 
 1. address validation
 2. incorrect password/email message
-3. "Austin Qucah uses Plaid to connect your account"
+4. fix donut chart
+5. getTransactionStatus only checks for 2 days past transaction date
 
 ## Getting Started
 

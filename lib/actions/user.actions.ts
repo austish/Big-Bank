@@ -181,8 +181,7 @@ export const createLinkToken = async (user: User) => {
       user: {
         client_user_id: user.$id
       },
-      // session user has name, but database user has first and last name
-      client_name: `${user.firstName} ${user.lastName}`,
+      client_name: 'Big Bank',
       products: ['auth'] as Products[],
       language: 'en',
       country_codes: ['US'] as CountryCode[]
@@ -241,7 +240,7 @@ export const exchangePublicToken = async ({
       // Check funding source URL
       if (!fundingSourceUrl) throw Error;
 
-      // Create a bank account using the user ID, item ID, account ID, access token, funding source URL, and sharable ID
+      // Create a bank account using the user ID, item ID, account ID, access token, funding source URL, and shareable ID
       await createBankAccount({
         userId: user.$id,
         bankId: itemId,
