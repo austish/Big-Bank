@@ -110,6 +110,6 @@ export const addFundingSource = async ({
     };
     return await createFundingSource(fundingSourceOptions);
   } catch (err) {
-    console.error("Transfer fund failed: ", err);
+    console.error("Adding funding source failed: ", err);
   }
 };

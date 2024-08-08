@@ -4,6 +4,8 @@ import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
+// clsx = combine class names
+// twMerge = merges tailwind classnames, removing duplicates and handling conflicts
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -130,15 +132,12 @@ export function getAccountTypeColors(type: AccountTypes) {
   }
 }
 
-export function countTransactionCategories(
-  transactions: Transaction[]
-): CategoryCount[] {
+export function countTransactionCategories(transactions: Transaction[]): CategoryCount[] {
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
 
   // Iterate over each transaction
-  transactions &&
-    transactions.forEach((transaction) => {
+  transactions && transactions.forEach((transaction) => {
       // Extract the category from the transaction
       const category = transaction.category;
 

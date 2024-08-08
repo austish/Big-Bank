@@ -1,28 +1,38 @@
 import HeaderBox from '@/components/HeaderBox'
+import { Pagination } from '@/components/Pagination';
 import TransactionsTable from '@/components/TransactionsTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import { formatAmount } from '@/lib/utils';
 import React from 'react'
 
-const TransactionHistory = async ({ searchParams: { id, page }}: SearchParamProps) => {
-  const currentPage = Number(page as string) || 1
+const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  // Get logged in user and accounts
   const loggedIn = await getLoggedInUser();
-
   if (!loggedIn) return;
 
   const accounts = await getAccounts({ userId: loggedIn.$id })
-
   if (!accounts) return;
 
   const accountsData = accounts?.data;
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId })
 
+  // Pagination
+  const currentPage = Number(page as string) || 1;
+  const rowsPerPage = 10;
+  const totalPages = Math.ceil(account?.transactions.length / rowsPerPage);
+  // Transactions displayed on current page
+  const indexOfLastTransaction = currentPage * rowsPerPage;
+  const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage;
+  const currentTransactions = account?.transactions.slice(
+    indexOfFirstTransaction, indexOfLastTransaction
+  )
+
   return (
     <div className='transactions'>
       <div className='transactions-header'>
-        <HeaderBox 
+        <HeaderBox
           title='Transaction History'
           subtext='See your transaction history and details.'
         />
@@ -46,7 +56,12 @@ const TransactionHistory = async ({ searchParams: { id, page }}: SearchParamProp
           </div>
         </div>
         <section className='flex w-full flex-col gap-6'>
-          <TransactionsTable transactions={account?.transactions} />
+          <TransactionsTable account={account.data} transactions={currentTransactions} />
+          {totalPages > 1 && (
+            <div className="my-4 w-full">
+              <Pagination totalPages={totalPages} page={currentPage} />
+            </div>
+          )}
         </section>
       </div>
     </div>

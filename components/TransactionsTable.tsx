@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table"
 import { transactionCategoryStyles } from "@/constants"
 import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from "@/lib/utils"
-import { text } from "stream/consumers";
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     // sets category as a type of the existing categories in transactionCategoryStyles
@@ -23,7 +22,7 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     )
 }
 
-const TransactionsTable = ({ transactions }: TransactionTableProps) => {
+const TransactionsTable = ({ account, transactions }: TransactionTableProps) => {
     return (
         <Table>
             <TableHeader className="bg-[#f9fafb]">
@@ -34,16 +33,17 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                     {/* max-md:hidden */}
                     <TableHead className="px-2">Channel</TableHead>
                     <TableHead className="px-2">Category</TableHead>
-                    {/* <TableHead className="px-2">Status</TableHead> */}
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {transactions.map((t: Transaction) => {
                     const status = getTransactionStatus(new Date(t.date));
-                    const amount = formatAmount(-t.amount);
-                    // console.log(t.type);
-                    // const isDebit = t.type === 'debit';
-                    // const isCredit = t.type === 'credit';
+                    const amount = formatAmount(
+                        // Deals with transfer amounts
+                        t.category === 'Transfer' && t.receiverBankId === account.appwriteItemId
+                          ? t.amount
+                          : -t.amount
+                      );
 
                     return (
                         <TableRow key={t.id} className={`${amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'} !over:bg-none !border-b-DEFAULT`}>
@@ -75,9 +75,6 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                             <TableCell className="pl-2 pr-10">
                                 <CategoryBadge category={t.category} />
                             </TableCell>
-                            {/* <TableCell className="pl-2 pr-10">
-                                <CategoryBadge category={status} />
-                            </TableCell> */}
                         </TableRow>
                     )
                 })}

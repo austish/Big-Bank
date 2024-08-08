@@ -18,9 +18,8 @@ const {
 // Returns database user
 export const getUserInfo = async ({ userId }: getUserInfoProps) => {
   try {
+    // Query for user from Appwrite database with userId
     const { database } = await createAdminClient();
-
-    // get specific user from user database with userId
     const user = await database.listDocuments(
       DATABASE_ID!,
       USER_COLLECTION_ID!,
@@ -46,6 +45,7 @@ export const signIn = async ({ email, password }: signInProps) => {
         });
 
         const user = await getUserInfo({ userId: session.userId });
+    
         return parseStringify(user);
     } catch (error) {
         console.error(error);
@@ -61,7 +61,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
         const { account, database } = await createAdminClient();
 
         // Create session user
-        const newUserAccount = await account.create(
+        newUserAccount = await account.create(
           ID.unique(),
           email,
           password,
@@ -159,7 +159,7 @@ export const createBankAccount = async ({
         accountId,
         accessToken,
         fundingSourceUrl,
-        // encrypted version of bankId, safe for public sharing
+        // Encrypted version of bankId, safe for public sharing
         shareableId,
       }
     );
@@ -168,6 +168,60 @@ export const createBankAccount = async ({
 
   } catch (error) {
     
+  }
+}
+
+export const getBanks = async ({ userId }: getBanksProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    // get all banks from user with userId in Appwrite database
+    const banks = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal('userId', [userId])]
+    );
+
+    return parseStringify(banks.documents);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getBank = async ({ documentId }: getBankProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    // get specific bank account from banks with $id in Appwrite database
+    const bank = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal('$id', [documentId])]
+    );
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    // query from database
+    const bank = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal('accountId', [accountId])]
+    );
+
+    // check if bank exists
+    if (bank.total !== 1) return null;
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -259,41 +313,6 @@ export const exchangePublicToken = async ({
       });
 
     } catch (error) {
-      console.error(error);
+      console.error("An error occured while exchanging token: ", error);
     }
   }
-
-// BANK //
-export const getBanks = async ({ userId }: getBanksProps) => {
-  try {
-    const { database } = await createAdminClient();
-
-    // get all banks from user with userId in Appwrite database
-    const banks = await database.listDocuments(
-      DATABASE_ID!,
-      BANK_COLLECTION_ID!,
-      [Query.equal('userId', [userId])]
-    );
-
-    return parseStringify(banks.documents);
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export const getBank = async ({ documentId }: getBankProps) => {
-  try {
-    const { database } = await createAdminClient();
-
-    // get specific bank account from banks with $id in Appwrite database
-    const bank = await database.listDocuments(
-      DATABASE_ID!,
-      BANK_COLLECTION_ID!,
-      [Query.equal('$id', [documentId])]
-    );
-
-    return parseStringify(bank.documents[0]);
-  } catch (error) {
-    console.log(error)
-  }
-}
