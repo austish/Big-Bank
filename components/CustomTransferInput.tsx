@@ -47,10 +47,10 @@ const CustomTransferInput = ({ form, name, label, description, accounts = [] }: 
                             <FormControl>
                                 {name === 'senderBank' ? <BankDropdown accounts={accounts} setValue={form.setValue} otherStyles="!w-full" />
                                     : name === 'name' ? <Textarea placeholder="Write a short note here" className="input-class" {...field} />
-                                    : name === 'email' ? <Input placeholder="ex: johndoe@gmail.com" className="input-class" {...field} />
-                                    : name === 'shareableId' ? <Input placeholder="Enter the public account number" className="input-class" {...field} />
-                                    : name === 'amount' ? <Input placeholder="ex: 5.00" className="input-class" {...field} />
-                                    : <></>
+                                        : name === 'email' ? <Input placeholder="ex: johndoe@gmail.com" className="input-class" {...field} />
+                                            : name === 'shareableId' ? <Input placeholder="Enter the public account number" className="input-class" {...field} />
+                                                : name === 'amount' ? <Input placeholder="ex: 5.00" className="input-class" {...field} />
+                                                    : <></>
                                 }
                             </FormControl>
                             <FormMessage className="text-12 text-red-500" />

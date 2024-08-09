@@ -15,15 +15,13 @@ import { decryptId } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
   Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "./ui/form";
 
 import CustomTransferInput from "./CustomTransferInput";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import HeaderBox from "./HeaderBox";
+
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -32,12 +30,12 @@ const formSchema = z.object({
   senderBank: z.string().min(4, "Please select a valid bank account"),
   shareableId: z.string().min(8, "Please select a valid shareable Id"),
 });
-// const formSchema = authFormSchema('transfer');
 
 const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+    // Success alert
+    const [alertVisible, setAlertVisible] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -83,8 +81,12 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
         if (newTransaction) {
           form.reset();
-          // router.push("/");
-          // create notification that transfer was sent
+
+          setAlertVisible(true);
+          // Hide the alert after a few seconds
+          setTimeout(() => {
+            setAlertVisible(false);
+          }, 3000);
         }
       }
     } catch (error) {
@@ -95,57 +97,75 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(submit)} className="flex flex-col">
-        <CustomTransferInput 
-          form={form}
-          name='senderBank'
-          description='Select the bank account you want to transfer funds from'
-          label='Select Source Bank'
-          accounts={accounts}
+    <div>
+      <section>
+        <HeaderBox
+          title='Payment Transfer'
+          subtext='Transfer money seamlessly to others.'
         />
-        <CustomTransferInput
-          form={form}
-          name='name'
-          description='Please provide any additional information or instructions related to the transfer'
-          label='Transfer Note (Optional)'
-        />
-        <div className="payment-transfer_form-details">
-          <h2 className="text-18 font-semibold text-gray-900">
-            Bank account details
-          </h2>
-          <p className="text-16 font-normal text-gray-600">
-            Enter the bank account details of the recipient
-          </p>
+        <div className="pt-4">
+          {alertVisible && (
+            <Alert variant="success" className="payment-transfer_form-item">
+              Transfer Successful!
+            </Alert>
+          )}
         </div>
-        <CustomTransferInput
-          form={form}
-          name='email'
-          label='Recipient&apos;s Email Address'
-        />
-        <CustomTransferInput
-          form={form}
-          name='shareableId'
-          label='Receiver&apos;s Plaid shareable Id'
-        />
-        <CustomTransferInput
-          form={form}
-          name='amount'
-          label='Amount'
-        />
-        <div className="payment-transfer_btn-box">
-          <Button type="submit" className="payment-transfer_btn">
-            {isLoading ? (
-              <>
-                <Loader2 size={20} className="animate-spin" /> &nbsp; Sending...
-              </>
-            ) : (
-              "Transfer Funds"
-            )}
-          </Button>
-        </div>
-      </form>
-    </Form>
+      </section>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(submit)} className="flex flex-col pt-4">
+          <CustomTransferInput
+            form={form}
+            name='senderBank'
+            description='Select the bank account you want to transfer funds from'
+            label='Select Source Bank'
+            accounts={accounts}
+          />
+          <CustomTransferInput
+            form={form}
+            name='name'
+            description='Please provide any additional information or instructions related to the transfer'
+            label='Transfer Note (Optional)'
+          />
+
+          <div className="payment-transfer_form-details">
+            <h2 className="text-18 font-semibold text-gray-900">
+              Bank account details
+            </h2>
+            <p className="text-16 font-normal text-gray-600">
+              Enter the bank account details of the recipient
+            </p>
+          </div>
+
+          <CustomTransferInput
+            form={form}
+            name='email'
+            label='Recipient&apos;s Email Address'
+          />
+          <CustomTransferInput
+            form={form}
+            name='shareableId'
+            label='Receiver&apos;s Plaid shareable Id'
+          />
+          <CustomTransferInput
+            form={form}
+            name='amount'
+            label='Amount'
+          />
+
+          <div className="payment-transfer_btn-box">
+            <Button type="submit" className="payment-transfer_btn">
+              {isLoading ? (
+                <>
+                  <Loader2 size={20} className="animate-spin" /> &nbsp; Sending...
+                </>
+              ) : (
+                "Transfer Funds"
+              )}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import HeaderBox from '@/components/HeaderBox'
 import PaymentTransferForm from '@/components/PaymentTransferForm'
 import { getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Transfer = async () => {
   // Get logged in user and accounts
@@ -14,14 +14,8 @@ const Transfer = async () => {
   const accountsData = accounts?.data;
 
   return (
-    <section className='payment-transfer'>
-      <HeaderBox
-        title='Payment Transfer'
-        subtext='Transfer money seamlessly to others.'
-      />
-      <section className='size-full pt-5'>
-        <PaymentTransferForm accounts={accountsData}/>
-      </section>
+    <section className='size-full payment-transfer'>
+      <PaymentTransferForm accounts={accountsData} />
     </section>
   )
 }
