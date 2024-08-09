@@ -59,7 +59,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     // dateOfBirth: data.dateOfBirth!,
                     // ssn: data.ssn!,
                     email: data.email,
-                    password: data.password
+                    password: data.password!
                 }
 
                 const newUser = await signUp(userData);
@@ -68,7 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
             else if (type === 'sign-in') {
                 const response = await signIn({
                     email: data.email,
-                    password: data.password
+                    password: data.password!
                 })
                 // if signed in, send to home page
                 if (response) {

@@ -138,20 +138,20 @@ export function countTransactionCategories(transactions: Transaction[]): Categor
 
   // Iterate over each transaction
   transactions && transactions.forEach((transaction) => {
-      // Extract the category from the transaction
-      const category = transaction.category;
+    // Extract the category from the transaction
+    const category = transaction.category;
 
-      // If the category exists in the categoryCounts object, increment its count
-      if (categoryCounts.hasOwnProperty(category)) {
-        categoryCounts[category]++;
-      } else {
-        // Otherwise, initialize the count to 1
-        categoryCounts[category] = 1;
-      }
+    // If the category exists in the categoryCounts object, increment its count
+    if (categoryCounts.hasOwnProperty(category)) {
+      categoryCounts[category]++;
+    } else {
+      // Otherwise, initialize the count to 1
+      categoryCounts[category] = 1;
+    }
 
-      // Increment total count
-      totalCount++;
-    });
+    // Increment total count
+    totalCount++;
+  });
 
   // Convert the categoryCounts object to an array of objects
   const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
@@ -195,27 +195,25 @@ export const getTransactionStatus = (date: Date) => {
 };
 
 export const authFormSchema = (type: string) => {
-  // was getting error:
-  // Type 'ZodString | (() => ZodOptional<ZodString>)' is not assignable to type 'ZodTypeAny'.
-  // Type '() => ZodOptional<ZodString>' is not assignable to type 'ZodType<any, any, any>'.ts(2322)
-  // types.d.ts(13, 5): The expected type comes from this index signature.
-  // fix: had to evaluate schema outside of z.object call
-  const conditionalString = (condition: boolean, minLength?: number, maxLength?: number) =>
-    condition ? z.string().optional() : z.string().min(minLength || 1).max(maxLength || Infinity);
-
   return z.object({
-    // sign up
-    // these params are optional in the auth form, because they are not required during sign in
-    firstName: conditionalString(type === 'sign-in', 3),
-    lastName: conditionalString(type === 'sign-in', 3),
-    address1: conditionalString(type === 'sign-in', 1, 50),
-    city: conditionalString(type === 'sign-in', 1, 50),
-    state: conditionalString(type === 'sign-in', 2, 2),
-    postalCode: conditionalString(type === 'sign-in', 5, 5),
-    dateOfBirth: conditionalString(type === 'sign-in', 3),
-    ssn: conditionalString(type === 'sign-in', 4),
-    // both
+    // Sign in and sign up
     email: z.string().email(),
     password: z.string().min(8),
+
+    // Sign up
+    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+    // address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
+    // city: type === 'sign-in' ? z.string().optional() : z.string().max(50),
+    // state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
+    // postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
+    // dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+    // ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+
+    // Transfers
+    // note: type !== 'transfer' ? z.string().optional() : z.string().min(4, "Transfer note is too short"),
+    // amount: type !== 'transfer' ? z.string().optional() : z.number().min(0.01, "Transfers only allowed between $0.01 to $25,000"),
+    // senderBank: type !== 'transfer' ? z.string().optional() : z.string().min(4, "Please select a valid bank account"),
+    // shareableId: type !== 'transfer' ? z.string().optional() : z.string().min(8, "Please select a valid shareable Id"),
   });
 };

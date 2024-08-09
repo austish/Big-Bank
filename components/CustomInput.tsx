@@ -30,8 +30,7 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
                     <Input
                         placeholder={placeholder}
                         className='input-class'
-                        // if name is password then return password
-                        // else return text
+                        // if name is password then return password else return text
                         type={name === 'password' ? 'password' : 'text'}
                         {...field}
                     />
