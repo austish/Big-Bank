@@ -1,12 +1,16 @@
 ## Todo
 
-- address validation
 - incorrect password/email message
-- fix donut chart
 - getTransactionStatus only checks for 2 days past transaction date
 - transfer money between your own accounts
 - transaction details like dwolla's (5:58:40)
 - add customInput to paymentTransferForm
+
+Done:
+- amount shows the same for both sender and reciever for transfers
+- address validation
+    - removed addresses
+- fix donut chart
 
 ## Getting Started
 
