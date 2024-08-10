@@ -78,7 +78,6 @@ const AuthForm = ({ type }: { type: string }) => {
             console.log(error);
         } finally {
             setIsLoading(false);
-            setAlertVisible(false);
         }
     }
 
