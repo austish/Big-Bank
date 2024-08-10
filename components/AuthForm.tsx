@@ -45,6 +45,7 @@ const AuthForm = ({ type }: { type: string }) => {
     // 2. Define a submit handler.
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true);
+        setAlertVisible(false);
 
         try {
             if (type === 'sign-up') {
@@ -77,6 +78,7 @@ const AuthForm = ({ type }: { type: string }) => {
             console.log(error);
         } finally {
             setIsLoading(false);
+            setAlertVisible(false);
         }
     }
 
