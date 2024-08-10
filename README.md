@@ -19,6 +19,8 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 - transfer money between your own accounts
 - transaction details like dwolla's (5:58:40)
 - fix top categories
+- remove accounts
+- edit user account
 
 Done:
 - amount shows the same for both sender and reciever for transfers
