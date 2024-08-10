@@ -1,17 +1,19 @@
 // Right side bar with user and card information
+'use client';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import BankCard from './BankCard'
 import { countTransactionCategories } from '@/lib/utils'
 import Category from './Category'
+import PlaidLink from './PlaidLink'
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
     const categories: CategoryCount[] = countTransactionCategories(transactions);
 
     return (
         <aside className='right-sidebar'>
-            <section className='flex flex-col pb-8'>
+            <section className='flex flex-col pb-4'>
                 <div className='profile-banner' />
                 <div className='profile'>
                     <div className='profile-img'>
@@ -31,10 +33,10 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                 </div>
             </section>
 
-            <section className='banks'>
-                <div className='flex w-full justify-between'>
-                    <h2 className='header-2'>My Banks</h2>
-                    <Link href='/' className='flex gap-2'>
+            <section className='accounts'>
+                {/* <div className='flex w-full justify-between'> */}
+                    <h2 className='header-2'>My Accounts</h2>
+                    {/* <Link href='/' className='flex gap-2'>
                         <Image
                             src='icons/plus.svg'
                             width={20}
@@ -42,8 +44,8 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                             alt='plus'
                         />
                         <h2 className='text-14 font-semibold text-gray-600'>Add Bank</h2>
-                    </Link>
-                </div>
+                    </Link> */}
+                {/* </div> */}
 
                 {banks?.length > 0 && (
                     <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>

@@ -1,4 +1,4 @@
-// Bank cards used in right sidebar and my banks page
+// Bank cards used in right sidebar and my accounts page
 import { formatAmount } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'

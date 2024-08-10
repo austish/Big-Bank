@@ -4,7 +4,7 @@ import { getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react'
 
-const MyBanks = async () => {
+const MyAccounts = async () => {
   const loggedIn = await getLoggedInUser();
 
   if (!loggedIn) return;
@@ -14,7 +14,7 @@ const MyBanks = async () => {
 
   return (
     <section className='flex'>
-      <div className='my-banks'>
+      <div className='my-accounts'>
         <HeaderBox
           title='Bank Accounts'
           subtext="Mangae your accounts and get your account transferring numbers."
@@ -33,4 +33,4 @@ const MyBanks = async () => {
   )
 }
 
-export default MyBanks
+export default MyAccounts
