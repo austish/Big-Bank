@@ -34,8 +34,8 @@ const formSchema = z.object({
 const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-    // Success alert
-    const [alertVisible, setAlertVisible] = useState(false);
+  // Success alert
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
