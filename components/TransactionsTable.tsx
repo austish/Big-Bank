@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table"
 import { transactionCategoryStyles } from "@/constants"
 import { cn, formatAmount, formatDateTime, removeSpecialCharacters } from "@/lib/utils"
+import Image from "next/image";
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     // sets category as a type of the existing categories in transactionCategoryStyles
@@ -23,7 +24,6 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 }
 
 const TransactionsTable = ({ account, transactions }: TransactionTableProps) => {
-    console.log(transactions)
     return (
         <Table>
             <TableHeader className="bg-[#f9fafb]">
@@ -41,21 +41,38 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
                     const amount = formatAmount(
                         // Deals with transfer amounts
                         t.category === 'Transfer' && t.receiverBankId === account.appwriteItemId
-                          ? t.amount
-                          : -t.amount
-                      );
+                            ? t.amount
+                            : -t.amount
+                    );
 
                     return (
                         <TableRow key={t.id} className={`${amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'} !over:bg-none !border-b-DEFAULT`}>
                             <TableCell className="max-w-[250px] pl-2 pr-10">
                                 <div className="flex items-center gap-3">
+                                    <div className="flex items-center space-x-3">
+                                        <div className="flex-shrink-0 w-9 h-9 overflow-hidden rounded-full">
+                                            {t.image ? (
+                                                <Image
+                                                    src={t.image}
+                                                    width={40}
+                                                    height={40}
+                                                    alt={t.name}
+                                                    className="object-cover w-full h-full"
+                                                />
+                                            ) : (
+                                                <div className={`w-full h-full flex items-center justify-center text-white bg-blue-700`}>
+                                                    <span className="text-sm font-semibold">{t.name[0].toUpperCase()}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
                                     <h1 className="text-14 truncate font-semibold text-[#344054]">
                                         {removeSpecialCharacters(t.name)}
                                     </h1>
                                 </div>
                                 {t.pending && (
                                     <p className="text-gray-400">
-                                        {status}
+                                        Pending
                                     </p>
                                 )}
                             </TableCell>
