@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { transactionCategoryStyles } from "@/constants"
-import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from "@/lib/utils"
+import { cn, formatAmount, formatDateTime, removeSpecialCharacters } from "@/lib/utils"
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     // sets category as a type of the existing categories in transactionCategoryStyles
@@ -23,6 +23,7 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 }
 
 const TransactionsTable = ({ account, transactions }: TransactionTableProps) => {
+    console.log(transactions)
     return (
         <Table>
             <TableHeader className="bg-[#f9fafb]">
@@ -37,7 +38,6 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
             </TableHeader>
             <TableBody>
                 {transactions.map((t: Transaction) => {
-                    const status = getTransactionStatus(new Date(t.date));
                     const amount = formatAmount(
                         // Deals with transfer amounts
                         t.category === 'Transfer' && t.receiverBankId === account.appwriteItemId
@@ -53,7 +53,7 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
                                         {removeSpecialCharacters(t.name)}
                                     </h1>
                                 </div>
-                                {status === "Processing" && (
+                                {t.pending && (
                                     <p className="text-gray-400">
                                         {status}
                                     </p>

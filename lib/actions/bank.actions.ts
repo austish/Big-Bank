@@ -87,6 +87,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
         id: transferData.$id,
         name: transferData.name!,
         amount: transferData.amount!,
+        pending: transferData.pending,
         date: transferData.$createdAt,
         paymentChannel: transferData.channel,
         category: transferData.category,
