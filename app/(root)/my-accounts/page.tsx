@@ -17,7 +17,7 @@ const MyAccounts = async () => {
       <div className='my-accounts'>
         <HeaderBox
           title='Bank Accounts'
-          subtext="Mangae your accounts and get your account transferring numbers."
+          subtext="Manage your accounts and get your account transferring numbers."
         />
         <div className='flex flex-wrap gap-6'>
           {accounts && accounts.data.map((a: Account) => (
