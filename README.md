@@ -15,12 +15,11 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 - Zod
 
 ## Todo
-1. getTransactionStatus only checks for 2 days past transaction date
-2. transaction details like dwolla's
-3. remove accounts
-4. edit user account
-5. fix top categories
-6. transfer money between your own accounts
+1. transaction details like dwolla's
+2. remove accounts
+3. edit user account
+4. fix top categories
+5. transfer money between your own accounts
 
 Done:
 - amount shows the same for both sender and reciever for transfers
@@ -30,6 +29,7 @@ Done:
 - add customInput to paymentTransferForm
 - successful transfer message
 - incorrect password/email message
+- getTransactionStatus only checks for 2 days past transaction date
 
 ## Deploy on Vercel
 

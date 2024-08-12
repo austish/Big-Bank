@@ -138,18 +138,15 @@ export function countTransactionCategories(transactions: Transaction[]): Categor
 
   // Iterate over each transaction
   transactions && transactions.forEach((transaction) => {
-    // Extract the category from the transaction
     const category = transaction.category;
 
-    // If the category exists in the categoryCounts object, increment its count
+    // Map category
     if (categoryCounts.hasOwnProperty(category)) {
       categoryCounts[category]++;
     } else {
-      // Otherwise, initialize the count to 1
       categoryCounts[category] = 1;
     }
 
-    // Increment total count
     totalCount++;
   });
 

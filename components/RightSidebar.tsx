@@ -10,6 +10,7 @@ import PlaidLink from './PlaidLink'
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
     const categories: CategoryCount[] = countTransactionCategories(transactions);
+    console.log(categories)
 
     return (
         <aside className='right-sidebar'>
@@ -18,18 +19,17 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                 <div className='profile'>
                     <div className='profile-img'>
                         <span className='text-5xl font-bold text-blue-500'>
-                            {/* letter in profile circle img */}
                             {user.firstName[0]}
                         </span>
                     </div>
-                    <div className='profile-details'>
+                    {/* <div className='profile-details'>
                         <h1 className='profile-name'>
                             {user.firstName} {user.lastName}
                         </h1>
                         <p className='profile-email'>
                             {user.email}
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
@@ -72,7 +72,7 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                 <div className='mt-10 flex flex-1 flex-col gap-6'>
                     <h2 className='header-2'>Top Categories</h2>
                     <div className='space-y-5'>
-                        {categories.map((category, index) => (
+                        {categories.map((category) => (
                             <Category key={category.name} category={category} />
                         ))}
                     </div>
