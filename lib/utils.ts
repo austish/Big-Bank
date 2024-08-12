@@ -186,14 +186,6 @@ export function decryptId(id: string) {
   return atob(id);
 }
 
-export const getTransactionStatus = (date: Date) => {
-  const today = new Date();
-  const twoDaysAgo = new Date(today);
-  twoDaysAgo.setDate(today.getDate() - 2);
-
-  return date > twoDaysAgo ? "Processing" : "Confirmed";
-};
-
 export const authFormSchema = (type: string) => {
   return z.object({
     // Sign in and sign up
