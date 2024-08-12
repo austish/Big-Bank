@@ -153,11 +153,6 @@
     @apply custom-scrollbar mb-8 flex w-full flex-nowrap;
   }
 
-  /* Transactions */
-  .transaction-img {
-    @apply flex-center absolute size-2 rounded-full bg-gray-100 border-2 border-white p-2 shadow-profile;
-  }
-
   /* Right sidebar */
   .right-sidebar {
     @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
