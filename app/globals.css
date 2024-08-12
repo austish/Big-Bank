@@ -110,7 +110,7 @@
   }
 
   .home-content {
-    @apply no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+    @apply no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-4 xl:max-h-screen xl:overflow-y-scroll;
   }
 
   .home-header {
@@ -167,7 +167,7 @@
   }
 
   .profile-img {
-    @apply flex-center absolute -top-20 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
+    @apply flex-center absolute -top-16 right-4 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
   }
 
   .profile-details {
