@@ -116,14 +116,14 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           <CustomTransferInput
             form={form}
             name='senderBank'
-            description='Select the bank account you want to transfer funds from'
+            description='Select the bank account you want to transfer funds from.'
             label='Select Source Bank'
             accounts={accounts}
           />
           <CustomTransferInput
             form={form}
             name='name'
-            description='Please provide any additional information or instructions related to the transfer'
+            description='Please provide any additional information or instructions related to the transfer.'
             label='Transfer Note (Optional)'
           />
 
@@ -144,7 +144,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           <CustomTransferInput
             form={form}
             name='shareableId'
-            label='Receiver&apos;s Plaid shareable Id'
+            label='Receiver&apos;s Plaid Shareable Id'
           />
           <CustomTransferInput
             form={form}

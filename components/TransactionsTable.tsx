@@ -10,6 +10,7 @@ import {
 import { transactionCategoryStyles } from "@/constants"
 import { cn, formatAmount, formatDateTime, removeSpecialCharacters } from "@/lib/utils"
 import Image from "next/image";
+import Copy from "./Copy";
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     // sets category as a type of the existing categories in transactionCategoryStyles
@@ -23,7 +24,8 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     )
 }
 
-const TransactionsTable = ({ account, transactions }: TransactionTableProps) => {
+const TransactionsTable = ({ account, transactions, full = false }: TransactionTableProps) => {
+    console.log(transactions)
     return (
         <Table>
             <TableHeader className="bg-[#f9fafb]">
@@ -34,6 +36,7 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
                     {/* max-md:hidden */}
                     <TableHead className="px-2">Channel</TableHead>
                     <TableHead className="px-2">Category</TableHead>
+                    {full && <TableHead className="px-8">ID</TableHead>}
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -61,7 +64,7 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
                                                 />
                                             ) : (
                                                 <div className={`w-full h-full flex items-center justify-center text-white bg-blue-700`}>
-                                                    <span className="text-sm font-semibold">{t.name[0].toUpperCase()}</span>
+                                                    <span className="text-sm font-semibold">{t.category[0].toUpperCase()}</span>
                                                 </div>
                                             )}
                                         </div>
@@ -92,6 +95,11 @@ const TransactionsTable = ({ account, transactions }: TransactionTableProps) => 
                             <TableCell className="pl-2 pr-10">
                                 <CategoryBadge category={t.category} />
                             </TableCell>
+                            {full && (
+                                <TableCell className="">
+                                    <Copy title={t.id} visible={false} />
+                                </TableCell>
+                            )}
                         </TableRow>
                     )
                 })}

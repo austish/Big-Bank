@@ -16,17 +16,19 @@ import { formUrlQuery, formatAmount } from "@/lib/utils";
 
 export const BankDropdown = ({
     accounts = [],
+    currentAccount = accounts[0],
     setValue,
+    valueName = "senderBank",
     otherStyles,
 }: BankDropdownProps) => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [selected, setSeclected] = useState(accounts[0]);
+    const [selected, setSelected] = useState(currentAccount);
 
     const handleBankChange = (id: string) => {
         const account = accounts.find((account) => account.appwriteItemId === id)!;
 
-        setSeclected(account);
+        setSelected(account);
         const newUrl = formUrlQuery({
             params: searchParams.toString(),
             key: "id",
@@ -35,7 +37,7 @@ export const BankDropdown = ({
         router.push(newUrl, { scroll: false });
 
         if (setValue) {
-            setValue("senderBank", id);
+            setValue({ valueName }, id);
         }
     };
 
