@@ -14,6 +14,7 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 - Chart.js
 - Zod
 
+## Home
 ![home](https://github.com/user-attachments/assets/ca8f5198-a99a-451c-aeca-77d68a02f6fd)
 
 ## Todo
@@ -33,7 +34,4 @@ Done:
 - incorrect password/email message
 - getTransactionStatus only checks for 2 days past transaction date
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
