@@ -1,16 +1,15 @@
+import { BankDropdown } from '@/components/BankDropdown';
 import HeaderBox from '@/components/HeaderBox'
 import { Pagination } from '@/components/Pagination';
 import TransactionsTable from '@/components/TransactionsTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import { formatAmount } from '@/lib/utils';
-import React from 'react'
 
 const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamProps) => {
   // Get logged in user and accounts
   const loggedIn = await getLoggedInUser();
   if (!loggedIn) return;
-
   const accounts = await getAccounts({ userId: loggedIn.$id })
   if (!accounts) return;
 
@@ -36,6 +35,9 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
           title='Transaction History'
           subtext='See your transaction history and details.'
         />
+        <div className='border-t border-gray-200'>
+          <BankDropdown accounts={accountsData} currentAccount={account.data} valueName='displayedAccount' otherStyles="!w-full" />
+        </div>
       </div>
       <div className='space-y-6'>
         <div className='transactions-account'>
@@ -56,7 +58,7 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
           </div>
         </div>
         <section className='flex w-full flex-col gap-6'>
-          <TransactionsTable account={account.data} transactions={currentTransactions} />
+          <TransactionsTable account={account.data} full={true} transactions={currentTransactions} />
           {totalPages > 1 && (
             <div className="my-4 w-full">
               <Pagination totalPages={totalPages} page={currentPage} />

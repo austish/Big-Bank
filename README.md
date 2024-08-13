@@ -25,13 +25,12 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 5. transfer money between your own accounts
 
 Done:
-- amount shows the same for both sender and reciever for transfers
-- address validation
-    - removed addresses
-- fix donut chart
-- add customInput to paymentTransferForm
-- successful transfer message
-- incorrect password/email message
-- getTransactionStatus only checks for 2 days past transaction date
+- added bank dropdown to transaction history page
+- fixed bug where amount shows the same for both sender and reciever for transfers
+- fixed donut chart
+- added customInput to paymentTransferForm
+- added successful transfer message
+- added incorrect password/email message
+- added check for pending transactions
 
 

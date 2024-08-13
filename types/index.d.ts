@@ -175,7 +175,9 @@ declare interface AuthFormProps {
 
 declare interface BankDropdownProps {
   accounts: Account[];
+  currentAccount?: Account;
   setValue?: UseFormSetValue<any>;
+  valueName?: string;
   otherStyles?: string;
 }
 
@@ -225,6 +227,7 @@ declare interface CategoryBadgeProps {
 declare interface TransactionTableProps {
   account: Account;
   transactions: Transaction[];
+  full?: boolean;
 }
 
 declare interface CategoryProps {
