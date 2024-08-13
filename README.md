@@ -1,6 +1,6 @@
 ## Introduction
 
-Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CSS, featuring secure SSR authentication and database management via Appwrite, multi-bank integration via Plaid, and fund transferring between users via Dwolla. real-time updates across the platform. Users can view their balances, transaction history, and access account information all in real time. The app is fully responsive, with comprehensive form input validation handled by Zod and a modern UI built using ShadCN components.
+Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CSS, featuring secure SSR authentication and database management via Appwrite, multi-bank integration via Plaid, and fund transferring between users via Dwolla. real-time updates across the platform. Users can view their balances, transaction history, and access account information all in real time. The app is fully responsive, with comprehensive form input validation handled by Zod and a modern UI built using shadcn components.
 
 ## Tech Stack
 - Next.js
@@ -9,7 +9,7 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 - Appwrite
 - Plaid
 - Dwolla
-- ShadCN
+- shadcn
 - Zod
 - Chart.js
 - React Hook Form
