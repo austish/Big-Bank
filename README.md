@@ -17,6 +17,10 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 ## Home
 ![home](https://github.com/user-attachments/assets/ca8f5198-a99a-451c-aeca-77d68a02f6fd)
 
+## Transaction History
+
+## Plaid Integration
+
 ## Todo
 1. transaction details like dwolla's
 2. remove accounts
