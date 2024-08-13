@@ -25,7 +25,6 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 }
 
 const TransactionsTable = ({ account, transactions, full = false }: TransactionTableProps) => {
-    console.log(transactions)
     return (
         <Table>
             <TableHeader className="bg-[#f9fafb]">
