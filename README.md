@@ -15,13 +15,16 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 - React Hook Form
 
 ## Home
-![home](https://github.com/user-attachments/assets/55636d7f-43e2-4846-af40-951b19fda473)
+![home](https://github.com/user-attachments/assets/01777eb3-55a3-4f30-8a16-d7a3c1a29624)
 
 ## Transaction History
 ![transaction history](https://github.com/user-attachments/assets/ab36f765-6b53-4d0e-a638-b280eebdf812)
 
 ## Transfer Funds
 ![transfer_funds](https://github.com/user-attachments/assets/08c7156a-3100-4121-8c31-3a08bebf0a42)
+
+## Authentication
+![auth](https://github.com/user-attachments/assets/d79837ba-a47c-4ef2-80e4-f4da1ba10849)
 
 
 ## Plaid Integration
