@@ -78,6 +78,12 @@ export function formatAmount(amount: number): string {
   return formatter.format(amount);
 }
 
+export function formatAmountWithSign(amount: number): string {
+  const formattedAmount = formatAmount(Math.abs(amount));
+  return amount < 0 ? `-${formattedAmount}` : `+${formattedAmount}`;
+}
+
+
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
 export const removeSpecialCharacters = (value: string) => {

@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { transactionCategoryStyles } from "@/constants"
-import { cn, formatAmount, formatDateTime, removeSpecialCharacters } from "@/lib/utils"
+import { cn, formatAmountWithSign, formatDateTime, removeSpecialCharacters } from "@/lib/utils"
 import Image from "next/image";
 import Copy from "./Copy";
 
@@ -40,7 +40,7 @@ const TransactionsTable = ({ account, transactions, full = false }: TransactionT
             </TableHeader>
             <TableBody>
                 {transactions.map((t: Transaction) => {
-                    const amount = formatAmount(
+                    const amount = formatAmountWithSign(
                         // Deals with transfer amounts
                         t.category === 'Transfer' && t.receiverBankId === account.appwriteItemId
                             ? t.amount
@@ -79,7 +79,7 @@ const TransactionsTable = ({ account, transactions, full = false }: TransactionT
                                 )}
                             </TableCell>
                             <TableCell className={`pl-2 pr-10 font-semibold 
-                                {${amount[0] === '-' ?
+                                ${amount[0] === '-' ?
                                     'text-[#f04438]'
                                     : 'text-[#039855]'
                                 }`}>

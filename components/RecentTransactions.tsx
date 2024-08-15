@@ -34,9 +34,13 @@ const RecentTransactions = ({
       </header>
 
       <Tabs defaultValue={appwriteItemId} className="w-full">
-      <TabsList className="recent-transactions-tablist">
+        <TabsList className="recent-transactions-tablist justify-start">
           {accounts.map((account: Account) => (
-            <TabsTrigger key={account.id} value={account.appwriteItemId}>
+            <TabsTrigger
+              key={account.id}
+              value={account.appwriteItemId}
+              className="flex-grow-0"
+            >
               <BankTabItem
                 key={account.id}
                 account={account}
@@ -52,14 +56,14 @@ const RecentTransactions = ({
             key={account.id}
             className="space-y-4"
           >
-            <BankInfo 
+            <BankInfo
               account={account}
               appwriteItemId={appwriteItemId}
               type="full"
             />
 
             <TransactionsTable account={account} transactions={currentTransactions} />
-            
+
             {totalPages > 1 && (
               <div className="my-4 w-full">
                 <Pagination totalPages={totalPages} page={page} />
