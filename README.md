@@ -32,7 +32,8 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 
 
 ## Todo
-1. edit user account
+1. replace appwrite with Firebase/AWS
+2. edit user account
 
 Done:
 - added bank dropdown to transaction history page
