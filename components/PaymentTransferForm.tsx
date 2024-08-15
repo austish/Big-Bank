@@ -123,7 +123,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           <CustomTransferInput
             form={form}
             name='name'
-            description='Please provide any additional information or instructions related to the transfer.'
+            description='Provide any additional information related to the transfer.'
             label='Transfer Note (Optional)'
           />
 
