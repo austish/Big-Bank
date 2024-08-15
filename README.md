@@ -25,11 +25,9 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 
 
 ## Todo
-1. transaction details like dwolla's
-2. remove accounts
-3. edit user account
-4. fix top categories
-5. transfer money between your own accounts
+1. edit user account
+2. fix top categories
+3. transfer money between your own accounts
 
 Done:
 - added bank dropdown to transaction history page
