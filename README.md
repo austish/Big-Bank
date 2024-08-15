@@ -20,14 +20,15 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 ## Transaction History
 ![transaction history](https://github.com/user-attachments/assets/ab36f765-6b53-4d0e-a638-b280eebdf812)
 
+## Transfer Funds
+![transfer_funds](https://github.com/user-attachments/assets/49034c9f-371f-4615-be44-9d5d220e89cb)
+
 ## Plaid Integration
 <img src="https://github.com/user-attachments/assets/f5b3cd0d-f5c0-4d88-ba5e-e94cfae33dce" width="350">
 
 
 ## Todo
 1. edit user account
-2. fix top categories
-3. transfer money between your own accounts
 
 Done:
 - added bank dropdown to transaction history page
@@ -37,5 +38,6 @@ Done:
 - added successful transfer message
 - added incorrect password/email message
 - added check for pending transactions
+- added copy transaction id
 
 
