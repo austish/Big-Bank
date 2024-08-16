@@ -160,15 +160,6 @@ declare interface PlaidLinkProps {
   dwollaCustomerId?: string;
 }
 
-// declare type User = sdk.Models.Document & {
-//   accountId: string;
-//   email: string;
-//   name: string;
-//   items: string[];
-//   accessToken: string;
-//   image: string;
-// };
-
 declare interface AuthFormProps {
   type: "sign-in" | "sign-up";
 }
@@ -267,13 +258,12 @@ declare interface CreateFundingSourceOptions {
 }
 
 declare interface CreateTransactionProps {
-  name: string;
+  note: string;
   amount: number;
   senderId: string;
   senderBankId: string;
   receiverId: string;
   receiverBankId: string;
-  email: string;
 }
 
 declare interface getTransactionsByBankIdProps {

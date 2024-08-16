@@ -7,8 +7,7 @@ import { BankDropdown } from './BankDropdown'
 import { Textarea } from './ui/textarea'
 
 const formSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    name: z.string().min(4, "Transfer note is too short"),
+    note: z.string().min(1, "Transfer note is too short"),
     amount: z.number().min(0.01, "Transfers only allowed between $0.01 to $25,000"),
     senderBank: z.string().min(4, "Please select a valid bank account"),
     shareableId: z.string().min(8, "Please select a valid shareable Id"),
@@ -46,11 +45,9 @@ const CustomTransferInput = ({ form, name, label, description, accounts = [] }: 
                         <div className="flex w-full flex-col">
                             <FormControl>
                                 {name === 'senderBank' ? <BankDropdown accounts={accounts} setValue={form.setValue} otherStyles="!w-full" />
-                                    : name === 'name' ? <Textarea placeholder="Write a short note here" className="input-class" {...field} />
-                                        : name === 'email' ? <Input placeholder="ex: test@test.com" className="input-class" {...field} />
-                                            : name === 'shareableId' ? <Input placeholder="Enter the public account number" className="input-class" {...field} />
-                                                : name === 'amount' ? <Input placeholder="ex: 5.00" className="input-class" {...field} />
-                                                    : <></>
+                                    : name === 'note' ? <Textarea placeholder="Write a short note here" className="input-class" {...field} />
+                                        : name === 'shareableId' ? <Input placeholder="Enter the public account number" className="input-class" {...field} />
+                                            : <Input placeholder="ex: 5.00" className="input-class" {...field} />
                                 }
                             </FormControl>
                             <FormMessage className="text-12 text-red-500" />

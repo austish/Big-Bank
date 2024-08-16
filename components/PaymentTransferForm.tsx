@@ -24,8 +24,7 @@ import HeaderBox from "./HeaderBox";
 
 
 const formSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  name: z.string().min(4, "Transfer note is too short"),
+  note: z.string().min(1, "Transfer note is too short"),
   amount: z.number().min(0.01, "Transfers only allowed between $0.01 to $25,000"),
   senderBank: z.string().min(4, "Please select a valid bank account"),
   shareableId: z.string().min(8, "Please select a valid shareable Id"),
@@ -40,8 +39,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      name: "",
+      note: "",
       amount: 0,
       senderBank: "",
       shareableId: "",
@@ -69,13 +67,12 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       // Create Appwrite transaction
       if (transfer) {
         const transaction = {
-          name: data.name,
+          note: data.note,
           amount: data.amount,
           senderId: senderBank.userId.$id,
           senderBankId: senderBank.$id,
           receiverId: receiverBank.userId.$id,
           receiverBankId: receiverBank.$id,
-          email: data.email,
         };
         const newTransaction = await createTransaction(transaction);
 
@@ -122,7 +119,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           />
           <CustomTransferInput
             form={form}
-            name='name'
+            name='note'
             description='Provide any additional information related to the transfer.'
             label='Transfer Note (Optional)'
           />
@@ -135,12 +132,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
               Enter the bank account details of the recipient
             </p>
           </div>
-
-          <CustomTransferInput
-            form={form}
-            name='email'
-            label='Recipient&apos;s Email Address'
-          />
+          
           <CustomTransferInput
             form={form}
             name='shareableId'
