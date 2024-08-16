@@ -50,7 +50,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
                     )
                 }
                 )}
-                <div className='-ml-1'>
+                <div className=''>
                     <PlaidLink user={user} />
                 </div>
             </nav>
