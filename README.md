@@ -30,7 +30,7 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 ## Plaid Integration
 <img src="https://github.com/user-attachments/assets/f5b3cd0d-f5c0-4d88-ba5e-e94cfae33dce" width="350">
 
-
+<!--
 ## Todo
 1. replace appwrite with Firebase/AWS
 2. edit user account
@@ -45,5 +45,6 @@ Done:
 - added incorrect password/email message
 - added check for pending transactions
 - added copy transaction id
+-->
 
 
