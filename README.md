@@ -20,8 +20,6 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 ## Transaction History
 ![transaction history](https://github.com/user-attachments/assets/e4e1a7a0-3896-422b-9bbf-c42a8727fa7c)
 
-
-
 ## Transfer Funds
 ![transfer_funds](https://github.com/user-attachments/assets/08c7156a-3100-4121-8c31-3a08bebf0a42)
 
@@ -36,6 +34,7 @@ Big Bank is a robust banking app built with Next.js, TypeScript, and Tailwind CS
 ## Todo
 1. replace appwrite with Firebase/AWS
 2. edit user account
+3. change transaction title for transfers. add separate way to see note
 
 Done:
 - added bank dropdown to transaction history page
